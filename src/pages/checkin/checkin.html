@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="dark">
+      <button ion-button menuToggle>
+	  <ion-icon name = "menu" ></ion-icon>
+    </button>
+    <ion-title>Check-In</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form (ngSubmit)="onSubmitCheckIn(f.value)" #f="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Nombre</ion-label>
+        <ion-input type="text" name="nombre" ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Numero de Pasaporte</ion-label>
+        <ion-input type="text" name="pasaporte" ngModel required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Numero de Telefono de Emergencia</ion-label>
+        <ion-input type="text" name="telefono" ngModel required></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button block type="submit" [disabled]="!f.valid">Aceptar</button>
+  </form>
+</ion-content>
