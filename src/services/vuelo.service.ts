@@ -1,6 +1,9 @@
 import { Vuelo } from "../models/vuelo.model";
 import { Datos } from "../models/datos.model";
+import​ { ​Injectable​ } ​from​ ​"@angular/core"​;
+import​ { ​AngularFireDatabase​ } ​from​ ​"angularfire2/database"​;
 
+@​Injectable​()
 export class VueloService{
 
     private vuelos: Vuelo[] =[
@@ -44,28 +47,34 @@ export class VueloService{
             "precio": 300}
         ];
 
-        private mis_vuelos: Vuelo[] =[];
+        //private mis_vuelos: Vuelo[] =[];
         private mis_tarjetas: Vuelo[] = [];
         private tarjetas_datos: Datos[] = [];
         private currentVuelo: Vuelo;
         private currentIndex: any;
         private currentDatos: Datos;
 
-    constructor(){
-    }
+        private mis_vuelosRef = this.db.list<Vuelo>('micro-practica-8');
+
+        constructor(private db:AngularFireDatabase){
+        }
 
     getVuelos(){
         return this.vuelos;
     }
 
-    addtoMisVuelos(value: Vuelo, i) {
-        this.mis_vuelos.push(value);
-        this.vuelos.splice(i,1);
+    // addtoMisVuelos(value: Vuelo, i) {
+    //     this.mis_vuelos.push(value);
+    //     this.vuelos.splice(i,1);
+    // }
+
+    addMisVuelos(value: Vuelo) {
+        return this.mis_vuelosRef.push(value);
     }
 
     addtoMisTarjetas(value: Vuelo, i) {
         this.mis_tarjetas.push(value);
-        this.mis_vuelos.splice(i,1);
+        // this.mis_vuelos.splice(i,1);
         this.setCurrentVuelo(null, null);
     }
 
@@ -95,7 +104,8 @@ export class VueloService{
     }
 
     getMisVuelos() {
-        return this.mis_vuelos;
+        //return this.mis_vuelos;
+        return this.mis_vuelosRef;
     }
 
     getMisTarjetas() {

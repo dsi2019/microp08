@@ -35,16 +35,17 @@ var BuscaPage = /** @class */ (function () {
     };
     ;
     BuscaPage.prototype.onAddVuelo = function (value, i) {
-        this.vueloService.addtoMisVuelos(value, i);
+        this.vueloService.addMisVuelos(value);
         this, this.navCtrl.pop();
     };
     BuscaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-busca',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/busca/busca.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <ion-title>Resultados</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n        <ion-card ion-item *ngFor="let vuelo of vuelos; let i=index">\n            <ion-grid>\n                <!-- IDA -->\n                <ion-row>\n                    <ion-item>\n                        <ion-title> {{vuelo.inicio}} hasta {{vuelo.destino}}</ion-title>\n                    </ion-item>\n                </ion-row>\n                <ion-row>\n                    <ion-col col-1>\n                        <ion-item>\n                            <img src={{vuelo.aerolinea_foto}}>\n                        </ion-item>\n                    </ion-col>\n                    <ion-col>\n                        <ion-item>\n                            <h2> {{vuelo.aerolinea}}</h2>\n                            <h3> {{vuelo.ida_inicio_hora}} - {{vuelo.ida_destino_hora}}</h3>\n                            <p> {{vuelo.ida_fecha | date:\'dd/MM/yy\'}}</p>\n                        </ion-item>\n                    </ion-col>\n                </ion-row>\n                <!-- Vueltas -->\n                <ion-row>\n                    <ion-item>\n                        <ion-title>{{vuelo.destino}} hasta {{vuelo.inicio}}</ion-title>\n                    </ion-item>\n                </ion-row>\n                <ion-row>\n                    <ion-col col-1>\n                        <ion-item>\n                            <img src={{vuelo.aerolinea_foto}}>\n                        </ion-item>\n                    </ion-col>\n                    <ion-col>\n                        <ion-item>\n                    <h2> {{vuelo.aerolinea}}</h2>\n                    <h3> {{vuelo.vuelta_inicio_hora}} - {{vuelo.vuelta_destino_hora}}</h3>\n                    <p> {{vuelo.vuelta_fecha | date:\'dd/MM/yy\'}}</p>\n                        </ion-item>\n                    </ion-col>\n                </ion-row>\n                <ion-row text-align = center>\n                    <ion-col>\n                        <ion-item>\n                            <h2><strong>Precio: </strong>{{vuelo.precio | number:\'1.0-0\'}}€</h2>\n                        </ion-item>\n                    </ion-col>\n                    <ion-col>\n                    <button ion-item secondary (click)="onAddVuelo(vuelo, i)">Comprar</button>\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-card>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/busca/busca.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]) === "function" && _c || Object])
     ], BuscaPage);
     return BuscaPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=busca.js.map
@@ -152,6 +153,14 @@ var InfoPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__checkin_checkin__ = __webpack_require__(108);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -170,13 +179,17 @@ var MisVuelosPage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.vueloService = vueloService;
-        this.misVuelos = [];
     }
     MisVuelosPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad MisVuelosPage');
     };
     MisVuelosPage.prototype.ionViewWillEnter = function () {
-        this.misVuelos = this.vueloService.getMisVuelos();
+        this.misVuelos$ = this.vueloService
+            .getMisVuelos()
+            .snapshotChanges()
+            .map(function (changes) {
+            return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
+        });
     };
     ;
     MisVuelosPage.prototype.onStartCheckIn = function (value, i) {
@@ -185,11 +198,12 @@ var MisVuelosPage = /** @class */ (function () {
     };
     MisVuelosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-mis-vuelos',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/mis-vuelos/mis-vuelos.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><ion-icon name="plane"></ion-icon> Mis Vuelos</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-list>\n      <ion-card ion-item *ngFor="let vuelo of misVuelos; let i=index">\n        <ion-grid>\n            <!-- IDA -->\n            <ion-row>\n              <ion-item>\n                <ion-title> {{vuelo.inicio}} hasta {{vuelo.destino}}</ion-title>\n              </ion-item>\n            </ion-row>\n            <ion-row>\n              <ion-col col-1>\n                <ion-item>\n                    <img src={{vuelo.aerolinea_foto}}>\n                </ion-item>\n              </ion-col>\n              <ion-col>\n                <ion-item>\n                  <h2> {{vuelo.aerolinea}}</h2>\n                  <h3> {{vuelo.ida_inicio_hora}} - {{vuelo.ida_destino_hora}}</h3>\n                  <p> {{vuelo.ida_fecha | date:\'dd/MM/yy\'}}</p>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <!-- Vueltas -->\n            <ion-row>\n              <ion-item>\n                  <ion-title>{{vuelo.destino}} hasta {{vuelo.inicio}}</ion-title>\n              </ion-item>\n            </ion-row>\n            <ion-row>\n              <ion-col col-1>\n                  <ion-item>\n                      <img src={{vuelo.aerolinea_foto}}>\n                  </ion-item>\n              </ion-col>\n              <ion-col>\n                <ion-item>\n                  <h2> {{vuelo.aerolinea}}</h2>\n                  <h3> {{vuelo.vuelta_inicio_hora}} - {{vuelo.vuelta_destino_hora}}</h3>\n                  <p> {{vuelo.vuelta_fecha | date:\'dd/MM/yy\'}}</p>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row>\n              <ion-col></ion-col>\n              <ion-col>\n                <button ion-item secondary (click)="onStartCheckIn(vuelo, i)">Check-In</button>\n              </ion-col>\n            </ion-row>\n        </ion-grid>\n      </ion-card>\n    </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/mis-vuelos/mis-vuelos.html"*/,
+            selector: 'page-mis-vuelos',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/mis-vuelos/mis-vuelos.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><ion-icon name="plane"></ion-icon> Mis Vuelos</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-list>\n      <ion-card ion-item *ngFor="let vuelo of misVuelos$ | async; let i=index">\n        <ion-grid>\n            <!-- IDA -->\n            <ion-row>\n              <ion-item>\n                <ion-title> {{vuelo.inicio}} hasta {{vuelo.destino}}</ion-title>\n              </ion-item>\n            </ion-row>\n            <ion-row>\n              <ion-col col-1>\n                <ion-item>\n                    <img src={{vuelo.aerolinea_foto}}>\n                </ion-item>\n              </ion-col>\n              <ion-col>\n                <ion-item>\n                  <h2> {{vuelo.aerolinea}}</h2>\n                  <h3> {{vuelo.ida_inicio_hora}} - {{vuelo.ida_destino_hora}}</h3>\n                  <p> {{vuelo.ida_fecha | date:\'dd/MM/yy\'}}</p>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <!-- Vueltas -->\n            <ion-row>\n              <ion-item>\n                  <ion-title>{{vuelo.destino}} hasta {{vuelo.inicio}}</ion-title>\n              </ion-item>\n            </ion-row>\n            <ion-row>\n              <ion-col col-1>\n                  <ion-item>\n                      <img src={{vuelo.aerolinea_foto}}>\n                  </ion-item>\n              </ion-col>\n              <ion-col>\n                <ion-item>\n                  <h2> {{vuelo.aerolinea}}</h2>\n                  <h3> {{vuelo.vuelta_inicio_hora}} - {{vuelo.vuelta_destino_hora}}</h3>\n                  <p> {{vuelo.vuelta_fecha | date:\'dd/MM/yy\'}}</p>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row>\n              <ion-col></ion-col>\n              <ion-col>\n                <button ion-item secondary (click)="onStartCheckIn(vuelo, i)">Check-In</button>\n              </ion-col>\n            </ion-row>\n        </ion-grid>\n      </ion-card>\n    </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/mis-vuelos/mis-vuelos.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]) === "function" && _c || Object])
     ], MisVuelosPage);
     return MisVuelosPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=mis-vuelos.js.map
@@ -463,7 +477,7 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 210:
+/***/ 227:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -498,13 +512,13 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 227:
+/***/ 228:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(228);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(248);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -512,7 +526,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 247:
+/***/ 248:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -520,10 +534,10 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_reservas_reservas__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_busca_busca__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_mis_vuelos_mis_vuelos__ = __webpack_require__(110);
@@ -532,9 +546,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_una_tarjeta_una_tarjeta__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_info_info__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_vuelo_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_firebase_credentials__ = __webpack_require__(297);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angularfire2__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angularfire2_database__ = __webpack_require__(305);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_firebase_credentials__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_angularfire2_database__ = __webpack_require__(167);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -589,7 +603,7 @@ var AppModule = /** @class */ (function () {
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_16_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_15__app_firebase_credentials__["a" /* FIREBASE_CONFIG */]),
-                __WEBPACK_IMPORTED_MODULE_17_angularfire2_database__["a" /* AngularFireDatabaseModule */]
+                __WEBPACK_IMPORTED_MODULE_17_angularfire2_database__["b" /* AngularFireDatabaseModule */]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
             entryComponents: [
@@ -618,16 +632,138 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 289:
+/***/ 33:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VueloService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(167);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var VueloService = /** @class */ (function () {
+    function VueloService(db) {
+        this.db = db;
+        this.vuelos = [
+            {
+                "aerolinea": "British Airways",
+                "aerolinea_foto": "../../assets/imgs/britishairways.png",
+                "inicio": "Madrid",
+                "destino": "Paris",
+                "ida_inicio_hora": "16:30",
+                "ida_destino_hora": "18:30",
+                "ida_fecha": new Date(2019, 10, 1),
+                "vuelta_inicio_hora": "11:30",
+                "vuelta_destino_hora": "13:30",
+                "vuelta_fecha": new Date(2019, 10, 2),
+                "precio": 150
+            },
+            {
+                "aerolinea": "Ryanair",
+                "aerolinea_foto": "../../assets/imgs/ryanair.png",
+                "inicio": "Madrid",
+                "destino": "Paris",
+                "ida_inicio_hora": "12:30",
+                "ida_destino_hora": "14:30",
+                "ida_fecha": new Date(2019, 10, 1),
+                "vuelta_inicio_hora": "15:30",
+                "vuelta_destino_hora": "17:30",
+                "vuelta_fecha": new Date(2019, 10, 2),
+                "precio": 199
+            },
+            {
+                "aerolinea": "Ibería",
+                "aerolinea_foto": "../../assets/imgs/iberia.png",
+                "inicio": "Madrid",
+                "destino": "Paris",
+                "ida_inicio_hora": "10:30",
+                "ida_destino_hora": "12:30",
+                "ida_fecha": new Date(2019, 10, 1),
+                "vuelta_inicio_hora": "12:30",
+                "vuelta_destino_hora": "15:30",
+                "vuelta_fecha": new Date(2019, 10, 2),
+                "precio": 300
+            }
+        ];
+        //private mis_vuelos: Vuelo[] =[];
+        this.mis_tarjetas = [];
+        this.tarjetas_datos = [];
+        this.mis_vuelosRef = this.db.list('micro-practica-8');
+    }
+    VueloService.prototype.getVuelos = function () {
+        return this.vuelos;
+    };
+    // addtoMisVuelos(value: Vuelo, i) {
+    //     this.mis_vuelos.push(value);
+    //     this.vuelos.splice(i,1);
+    // }
+    VueloService.prototype.addMisVuelos = function (value) {
+        return this.mis_vuelosRef.push(value);
+    };
+    VueloService.prototype.addtoMisTarjetas = function (value, i) {
+        this.mis_tarjetas.push(value);
+        // this.mis_vuelos.splice(i,1);
+        this.setCurrentVuelo(null, null);
+    };
+    VueloService.prototype.addtoMisDatos = function (value) {
+        this.tarjetas_datos.push(value);
+    };
+    VueloService.prototype.setCurrentVuelo = function (value, i) {
+        this.currentVuelo = value;
+        this.currentIndex = i;
+    };
+    VueloService.prototype.setCurrentDatos = function (value) {
+        this.currentDatos = value;
+    };
+    VueloService.prototype.getCurrentVuelo = function () {
+        return this.currentVuelo;
+    };
+    VueloService.prototype.getCurrentIndex = function () {
+        return this.currentIndex;
+    };
+    VueloService.prototype.getCurrentDatos = function () {
+        return this.currentDatos;
+    };
+    VueloService.prototype.getMisVuelos = function () {
+        //return this.mis_vuelos;
+        return this.mis_vuelosRef;
+    };
+    VueloService.prototype.getMisTarjetas = function () {
+        return this.mis_tarjetas;
+    };
+    VueloService.prototype.getTarjetasDatos = function () {
+        return this.tarjetas_datos;
+    };
+    VueloService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["a" /* AngularFireDatabase */]])
+    ], VueloService);
+    return VueloService;
+}());
+
+//# sourceMappingURL=vuelo.service.js.map
+
+/***/ }),
+
+/***/ 331:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_reservas_reservas__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_mis_vuelos_mis_vuelos__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_tarjetas_tarjetas__ = __webpack_require__(112);
@@ -699,7 +835,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 297:
+/***/ 339:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -714,106 +850,7 @@ var FIREBASE_CONFIG = {
 };
 //# sourceMappingURL=firebase.credentials.js.map
 
-/***/ }),
-
-/***/ 33:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VueloService; });
-var VueloService = /** @class */ (function () {
-    function VueloService() {
-        this.vuelos = [
-            {
-                "aerolinea": "British Airways",
-                "aerolinea_foto": "../../assets/imgs/britishairways.png",
-                "inicio": "Madrid",
-                "destino": "Paris",
-                "ida_inicio_hora": "16:30",
-                "ida_destino_hora": "18:30",
-                "ida_fecha": new Date(2019, 10, 1),
-                "vuelta_inicio_hora": "11:30",
-                "vuelta_destino_hora": "13:30",
-                "vuelta_fecha": new Date(2019, 10, 2),
-                "precio": 150
-            },
-            {
-                "aerolinea": "Ryanair",
-                "aerolinea_foto": "../../assets/imgs/ryanair.png",
-                "inicio": "Madrid",
-                "destino": "Paris",
-                "ida_inicio_hora": "12:30",
-                "ida_destino_hora": "14:30",
-                "ida_fecha": new Date(2019, 10, 1),
-                "vuelta_inicio_hora": "15:30",
-                "vuelta_destino_hora": "17:30",
-                "vuelta_fecha": new Date(2019, 10, 2),
-                "precio": 199
-            },
-            {
-                "aerolinea": "Ibería",
-                "aerolinea_foto": "../../assets/imgs/iberia.png",
-                "inicio": "Madrid",
-                "destino": "Paris",
-                "ida_inicio_hora": "10:30",
-                "ida_destino_hora": "12:30",
-                "ida_fecha": new Date(2019, 10, 1),
-                "vuelta_inicio_hora": "12:30",
-                "vuelta_destino_hora": "15:30",
-                "vuelta_fecha": new Date(2019, 10, 2),
-                "precio": 300
-            }
-        ];
-        this.mis_vuelos = [];
-        this.mis_tarjetas = [];
-        this.tarjetas_datos = [];
-    }
-    VueloService.prototype.getVuelos = function () {
-        return this.vuelos;
-    };
-    VueloService.prototype.addtoMisVuelos = function (value, i) {
-        this.mis_vuelos.push(value);
-        this.vuelos.splice(i, 1);
-    };
-    VueloService.prototype.addtoMisTarjetas = function (value, i) {
-        this.mis_tarjetas.push(value);
-        this.mis_vuelos.splice(i, 1);
-        this.setCurrentVuelo(null, null);
-    };
-    VueloService.prototype.addtoMisDatos = function (value) {
-        this.tarjetas_datos.push(value);
-    };
-    VueloService.prototype.setCurrentVuelo = function (value, i) {
-        this.currentVuelo = value;
-        this.currentIndex = i;
-    };
-    VueloService.prototype.setCurrentDatos = function (value) {
-        this.currentDatos = value;
-    };
-    VueloService.prototype.getCurrentVuelo = function () {
-        return this.currentVuelo;
-    };
-    VueloService.prototype.getCurrentIndex = function () {
-        return this.currentIndex;
-    };
-    VueloService.prototype.getCurrentDatos = function () {
-        return this.currentDatos;
-    };
-    VueloService.prototype.getMisVuelos = function () {
-        return this.mis_vuelos;
-    };
-    VueloService.prototype.getMisTarjetas = function () {
-        return this.mis_tarjetas;
-    };
-    VueloService.prototype.getTarjetasDatos = function () {
-        return this.tarjetas_datos;
-    };
-    return VueloService;
-}());
-
-//# sourceMappingURL=vuelo.service.js.map
-
 /***/ })
 
-},[227]);
+},[228]);
 //# sourceMappingURL=main.js.map

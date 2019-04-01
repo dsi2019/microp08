@@ -24,7 +24,7 @@ export class BuscaPage {
   };
 
   onAddVuelo(value: Vuelo, i){
-    this.vueloService.addtoMisVuelos(value, i);
+    this.vueloService.addMisVuelos(value);
     this,this.navCtrl.pop();
   }
 }

@@ -9,7 +9,7 @@
 
 <ion-content padding>
     <ion-list>
-      <ion-card ion-item *ngFor="let vuelo of misVuelos; let i=index">
+      <ion-card ion-item *ngFor="let vuelo of misVuelos$ | async; let i=index">
         <ion-grid>
             <!-- IDA -->
             <ion-row>
