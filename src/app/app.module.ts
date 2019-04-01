@@ -14,7 +14,10 @@ import { CheckinPage } from '../pages/checkin/checkin';
 import { TarjetasPage } from '../pages/tarjetas/tarjetas';
 import { UnaTarjetaPage } from '../pages/una-tarjeta/una-tarjeta';
 import { InfoPage } from '../pages/info/info';
-import { VueloService } from '../services/vuelo.service'
+import { VueloService } from '../services/vuelo.service';
+import { FIREBASE_CONFIG } from '../app/firebase.credentials';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { VueloService } from '../services/vuelo.service'
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
