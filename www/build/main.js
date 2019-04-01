@@ -42,10 +42,9 @@ var BuscaPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-busca',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/busca/busca.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <ion-title>Resultados</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n        <ion-card ion-item *ngFor="let vuelo of vuelos; let i=index">\n            <ion-grid>\n                <!-- IDA -->\n                <ion-row>\n                    <ion-item>\n                        <ion-title> {{vuelo.inicio}} hasta {{vuelo.destino}}</ion-title>\n                    </ion-item>\n                </ion-row>\n                <ion-row>\n                    <ion-col col-1>\n                        <ion-item>\n                            <img src={{vuelo.aerolinea_foto}}>\n                        </ion-item>\n                    </ion-col>\n                    <ion-col>\n                        <ion-item>\n                            <h2> {{vuelo.aerolinea}}</h2>\n                            <h3> {{vuelo.ida_inicio_hora}} - {{vuelo.ida_destino_hora}}</h3>\n                            <p> {{vuelo.ida_fecha | date:\'dd/MM/yy\'}}</p>\n                        </ion-item>\n                    </ion-col>\n                </ion-row>\n                <!-- Vueltas -->\n                <ion-row>\n                    <ion-item>\n                        <ion-title>{{vuelo.destino}} hasta {{vuelo.inicio}}</ion-title>\n                    </ion-item>\n                </ion-row>\n                <ion-row>\n                    <ion-col col-1>\n                        <ion-item>\n                            <img src={{vuelo.aerolinea_foto}}>\n                        </ion-item>\n                    </ion-col>\n                    <ion-col>\n                        <ion-item>\n                    <h2> {{vuelo.aerolinea}}</h2>\n                    <h3> {{vuelo.vuelta_inicio_hora}} - {{vuelo.vuelta_destino_hora}}</h3>\n                    <p> {{vuelo.vuelta_fecha | date:\'dd/MM/yy\'}}</p>\n                        </ion-item>\n                    </ion-col>\n                </ion-row>\n                <ion-row text-align = center>\n                    <ion-col>\n                        <ion-item>\n                            <h2><strong>Precio: </strong>{{vuelo.precio | number:\'1.0-0\'}}€</h2>\n                        </ion-item>\n                    </ion-col>\n                    <ion-col>\n                    <button ion-item secondary (click)="onAddVuelo(vuelo, i)">Comprar</button>\n                    </ion-col>\n                </ion-row>\n            </ion-grid>\n        </ion-card>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/busca/busca.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]])
     ], BuscaPage);
     return BuscaPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=busca.js.map
@@ -200,10 +199,9 @@ var MisVuelosPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-mis-vuelos',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/mis-vuelos/mis-vuelos.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><ion-icon name="plane"></ion-icon> Mis Vuelos</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-list>\n      <ion-card ion-item *ngFor="let vuelo of misVuelos$ | async; let i=index">\n        <ion-grid>\n            <!-- IDA -->\n            <ion-row>\n              <ion-item>\n                <ion-title> {{vuelo.inicio}} hasta {{vuelo.destino}}</ion-title>\n              </ion-item>\n            </ion-row>\n            <ion-row>\n              <ion-col col-1>\n                <ion-item>\n                    <img src={{vuelo.aerolinea_foto}}>\n                </ion-item>\n              </ion-col>\n              <ion-col>\n                <ion-item>\n                  <h2> {{vuelo.aerolinea}}</h2>\n                  <h3> {{vuelo.ida_inicio_hora}} - {{vuelo.ida_destino_hora}}</h3>\n                  <p> {{vuelo.ida_fecha | date:\'dd/MM/yy\'}}</p>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <!-- Vueltas -->\n            <ion-row>\n              <ion-item>\n                  <ion-title>{{vuelo.destino}} hasta {{vuelo.inicio}}</ion-title>\n              </ion-item>\n            </ion-row>\n            <ion-row>\n              <ion-col col-1>\n                  <ion-item>\n                      <img src={{vuelo.aerolinea_foto}}>\n                  </ion-item>\n              </ion-col>\n              <ion-col>\n                <ion-item>\n                  <h2> {{vuelo.aerolinea}}</h2>\n                  <h3> {{vuelo.vuelta_inicio_hora}} - {{vuelo.vuelta_destino_hora}}</h3>\n                  <p> {{vuelo.vuelta_fecha | date:\'dd/MM/yy\'}}</p>\n                </ion-item>\n              </ion-col>\n            </ion-row>\n            <ion-row>\n              <ion-col></ion-col>\n              <ion-col>\n                <button ion-item secondary (click)="onStartCheckIn(vuelo, i)">Check-In</button>\n              </ion-col>\n            </ion-row>\n        </ion-grid>\n      </ion-card>\n    </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/mis-vuelos/mis-vuelos.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]])
     ], MisVuelosPage);
     return MisVuelosPage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=mis-vuelos.js.map
@@ -211,6 +209,111 @@ var MisVuelosPage = /** @class */ (function () {
 /***/ }),
 
 /***/ 111:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TarjetasPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__una_tarjeta_una_tarjeta__ = __webpack_require__(112);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var TarjetasPage = /** @class */ (function () {
+    function TarjetasPage(navCtrl, navParams, vueloService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.vueloService = vueloService;
+        this.misTarjetas = [];
+        this.misDatos = [];
+    }
+    TarjetasPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad TarjetasPage');
+    };
+    TarjetasPage.prototype.ionViewWillEnter = function () {
+        this.misTarjetas = this.vueloService.getMisTarjetas();
+        this.misDatos = this.vueloService.getTarjetasDatos();
+    };
+    ;
+    TarjetasPage.prototype.onLoadTarjeta = function (value, i) {
+        this.vueloService.setCurrentVuelo(value, i);
+        this.vueloService.setCurrentDatos(this.misDatos[i]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__una_tarjeta_una_tarjeta__["a" /* UnaTarjetaPage */]);
+    };
+    TarjetasPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-tarjetas',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/tarjetas/tarjetas.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><ion-icon name="paper"></ion-icon> Tarjetas</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-list>\n        <button ion-item *ngFor="let vuelo of misTarjetas; let i=index" (click)="onLoadTarjeta(vuelo, i)">\n          <ion-card>\n            <ion-grid>\n                <!-- IDA -->\n                <ion-row>\n                  <ion-item>\n                    <ion-title> {{vuelo.inicio}} hasta {{vuelo.destino}}</ion-title>\n                  </ion-item>\n                </ion-row>\n                <ion-row>\n                  <ion-col col-1>\n                    <ion-item>\n                        <img src={{vuelo.aerolinea_foto}}>\n                    </ion-item>\n                  </ion-col>\n                  <ion-col>\n                    <ion-item>\n                      <h2> {{vuelo.aerolinea}}</h2>\n                      <h3> {{vuelo.ida_inicio_hora}} - {{vuelo.ida_destino_hora}}</h3>\n                      <p> {{vuelo.ida_fecha | date:\'dd/MM/yy\'}}</p>\n                    </ion-item>\n                  </ion-col>\n                </ion-row>\n                <!-- Vueltas -->\n                <ion-row>\n                  <ion-item>\n                      <ion-title>{{vuelo.destino}} hasta {{vuelo.inicio}}</ion-title>\n                  </ion-item>\n                </ion-row>\n                <ion-row>\n                  <ion-col col-1>\n                      <ion-item>\n                          <img src={{vuelo.aerolinea_foto}}>\n                      </ion-item>\n                  </ion-col>\n                  <ion-col>\n                    <ion-item>\n                      <h2> {{vuelo.aerolinea}}</h2>\n                      <h3> {{vuelo.vuelta_inicio_hora}} - {{vuelo.vuelta_destino_hora}}</h3>\n                      <p> {{vuelo.vuelta_fecha | date:\'dd/MM/yy\'}}</p>\n                    </ion-item>\n                  </ion-col>\n                </ion-row>\n                <ion-row>\n                  <ion-col></ion-col>\n                  <ion-col>\n                    <button ion-item secondary (click)="onStartCheckIn(vuelo, i)">Check-In</button>\n                  </ion-col>\n                </ion-row>\n              </ion-grid>\n            </ion-card>\n        </button>\n    </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/tarjetas/tarjetas.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]])
+    ], TarjetasPage);
+    return TarjetasPage;
+}());
+
+//# sourceMappingURL=tarjetas.js.map
+
+/***/ }),
+
+/***/ 112:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UnaTarjetaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__ = __webpack_require__(33);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UnaTarjetaPage = /** @class */ (function () {
+    function UnaTarjetaPage(navCtrl, navParams, vueloService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.vueloService = vueloService;
+        this.tarjeta = [];
+        this.datos = [];
+    }
+    UnaTarjetaPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad UnaTarjetaPage');
+    };
+    UnaTarjetaPage.prototype.ionViewWillEnter = function () {
+        this.tarjeta.push(this.vueloService.getCurrentVuelo());
+        this.datos.push(this.vueloService.getCurrentDatos());
+    };
+    ;
+    UnaTarjetaPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-una-tarjeta',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/una-tarjeta/una-tarjeta.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <ion-title>Tu Tarjeta</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card *ngFor="let vuelo of tarjeta">\n\n\n      <ion-grid>\n        <!-- Header -->\n        <br>\n        <ion-row>\n          <ion-col col-2>\n              <!-- Update this logo to match airline -->\n              <img src={{vuelo.aerolinea_foto}}>\n          </ion-col>\n          <ion-col>\n              <ion-item>\n                <p>Numero de Vuelo:</p>\n                <h4>9949</h4>\n              </ion-item>\n          </ion-col>\n          <ion-col>\n            <ion-item>\n              <p>Puerta:</p>\n              <h4>9</h4>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <!-- Lugares -->\n        <ion-row text-center>\n          <ion-col>\n              <ion-title>{{vuelo.inicio}} </ion-title>\n          </ion-col>\n          <ion-col>\n          </ion-col>\n          <ion-col>\n             <ion-title>{{vuelo.destino}}</ion-title>\n          </ion-col>\n        </ion-row>\n        <!-- Times / Groups -->\n        <ion-row>\n          <ion-col>\n              <ion-item>\n                  <p> Día:</p>\n                  <h4> {{vuelo.vuelta_fecha | date:\'dd/MMMM/yy\'}}</h4>\n              </ion-item>\n          </ion-col>\n          <ion-col>\n            <ion-item>\n                <p>Hora de Salida:</p>\n                <h4>{{vuelo.ida_inicio_hora}}</h4>\n            </ion-item>\n          </ion-col>\n          <ion-col>\n            <ion-item>\n              <p>Hora de Embarque:</p>\n              <h4>{{vuelo.ida_inicio_hora}}</h4>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n            <ion-col>\n              <ion-item>\n                <h2>Nombre</h2>\n                <ion-item *ngFor="let dato of datos">\n                    <h1>{{dato.nombre}}</h1>\n                </ion-item>7e8\n              </ion-item>\n            </ion-col>\n        </ion-row>\n        <ion-row text-center>\n          <ion-col>\n              <ion-item>\n                  <img src="../../assets/imgs/qr_code.png">\n              </ion-item>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <!-- Vuelta -->\n      <ion-grid>\n          <!-- Header -->\n          <ion-row>\n            <ion-col col-2>\n                <!-- Update this logo to match airline -->\n                <img src={{vuelo.aerolinea_foto}}>\n            </ion-col>\n            <ion-col>\n                <ion-item>\n                  <p>Numero de Vuelo:</p>\n                  <h4>939</h4>\n                </ion-item>\n            </ion-col>\n            <ion-col>\n              <ion-item>\n                <p>Puerta:</p>\n                <h4>10</h4>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n          <!-- Lugares -->\n          <ion-row text-center>\n            <ion-col>\n                <ion-title>{{vuelo.destino}} </ion-title>\n            </ion-col>\n            <ion-col>\n               <ion-title>{{vuelo.inicio}}</ion-title>\n            </ion-col>\n          </ion-row>\n          <!-- Times / Groups -->\n          <ion-row>\n            <ion-col>\n              <ion-item>\n                  <p> Día:</p>\n                  <h4> {{vuelo.vuelta_fecha | date:\'dd/MMMM/yy\'}}</h4>\n              </ion-item>\n            </ion-col>\n            <ion-col>\n              <ion-item>\n                  <p>Hora de Salida:</p>\n                  <h4>{{vuelo.vuelta_inicio_hora}}</h4>\n              </ion-item>\n            </ion-col>\n            <ion-col>\n              <ion-item>\n                <p>Hora de Embarque:</p>\n                <h4>{{vuelo.vuelta_inicio_hora}}</h4>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n              <ion-col>\n                <ion-item>\n                  <h2>Nombre</h2>\n                  <ion-item *ngFor="let dato of datos">\n                      <h1>{{dato.nombre}}</h1>\n                  </ion-item>\n                </ion-item>\n              </ion-col>\n          </ion-row>\n          <ion-row text-center>\n            <ion-col>\n                <ion-item>\n                    <img src="../../assets/imgs/qr_code.png">\n                </ion-item>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/una-tarjeta/una-tarjeta.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]])
+    ], UnaTarjetaPage);
+    return UnaTarjetaPage;
+}());
+
+//# sourceMappingURL=una-tarjeta.js.map
+
+/***/ }),
+
+/***/ 113:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -306,111 +409,6 @@ var ReservasPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 112:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TarjetasPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__una_tarjeta_una_tarjeta__ = __webpack_require__(113);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var TarjetasPage = /** @class */ (function () {
-    function TarjetasPage(navCtrl, navParams, vueloService) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.vueloService = vueloService;
-        this.misTarjetas = [];
-        this.misDatos = [];
-    }
-    TarjetasPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad TarjetasPage');
-    };
-    TarjetasPage.prototype.ionViewWillEnter = function () {
-        this.misTarjetas = this.vueloService.getMisTarjetas();
-        this.misDatos = this.vueloService.getTarjetasDatos();
-    };
-    ;
-    TarjetasPage.prototype.onLoadTarjeta = function (value, i) {
-        this.vueloService.setCurrentVuelo(value, i);
-        this.vueloService.setCurrentDatos(this.misDatos[i]);
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__una_tarjeta_una_tarjeta__["a" /* UnaTarjetaPage */]);
-    };
-    TarjetasPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-tarjetas',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/tarjetas/tarjetas.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><ion-icon name="paper"></ion-icon> Tarjetas</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n    <ion-list>\n        <button ion-item *ngFor="let vuelo of misTarjetas; let i=index" (click)="onLoadTarjeta(vuelo, i)">\n          <ion-card>\n            <ion-grid>\n                <!-- IDA -->\n                <ion-row>\n                  <ion-item>\n                    <ion-title> {{vuelo.inicio}} hasta {{vuelo.destino}}</ion-title>\n                  </ion-item>\n                </ion-row>\n                <ion-row>\n                  <ion-col col-1>\n                    <ion-item>\n                        <img src={{vuelo.aerolinea_foto}}>\n                    </ion-item>\n                  </ion-col>\n                  <ion-col>\n                    <ion-item>\n                      <h2> {{vuelo.aerolinea}}</h2>\n                      <h3> {{vuelo.ida_inicio_hora}} - {{vuelo.ida_destino_hora}}</h3>\n                      <p> {{vuelo.ida_fecha | date:\'dd/MM/yy\'}}</p>\n                    </ion-item>\n                  </ion-col>\n                </ion-row>\n                <!-- Vueltas -->\n                <ion-row>\n                  <ion-item>\n                      <ion-title>{{vuelo.destino}} hasta {{vuelo.inicio}}</ion-title>\n                  </ion-item>\n                </ion-row>\n                <ion-row>\n                  <ion-col col-1>\n                      <ion-item>\n                          <img src={{vuelo.aerolinea_foto}}>\n                      </ion-item>\n                  </ion-col>\n                  <ion-col>\n                    <ion-item>\n                      <h2> {{vuelo.aerolinea}}</h2>\n                      <h3> {{vuelo.vuelta_inicio_hora}} - {{vuelo.vuelta_destino_hora}}</h3>\n                      <p> {{vuelo.vuelta_fecha | date:\'dd/MM/yy\'}}</p>\n                    </ion-item>\n                  </ion-col>\n                </ion-row>\n                <ion-row>\n                  <ion-col></ion-col>\n                  <ion-col>\n                    <button ion-item secondary (click)="onStartCheckIn(vuelo, i)">Check-In</button>\n                  </ion-col>\n                </ion-row>\n              </ion-grid>\n            </ion-card>\n        </button>\n    </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/tarjetas/tarjetas.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]])
-    ], TarjetasPage);
-    return TarjetasPage;
-}());
-
-//# sourceMappingURL=tarjetas.js.map
-
-/***/ }),
-
-/***/ 113:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UnaTarjetaPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__ = __webpack_require__(33);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var UnaTarjetaPage = /** @class */ (function () {
-    function UnaTarjetaPage(navCtrl, navParams, vueloService) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.vueloService = vueloService;
-        this.tarjeta = [];
-        this.datos = [];
-    }
-    UnaTarjetaPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad UnaTarjetaPage');
-    };
-    UnaTarjetaPage.prototype.ionViewWillEnter = function () {
-        this.tarjeta.push(this.vueloService.getCurrentVuelo());
-        this.datos.push(this.vueloService.getCurrentDatos());
-    };
-    ;
-    UnaTarjetaPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-una-tarjeta',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/una-tarjeta/una-tarjeta.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <ion-title>Tu Tarjeta</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card *ngFor="let vuelo of tarjeta">\n\n\n      <ion-grid>\n        <!-- Header -->\n        <br>\n        <ion-row>\n          <ion-col col-2>\n              <!-- Update this logo to match airline -->\n              <img src={{vuelo.aerolinea_foto}}>\n          </ion-col>\n          <ion-col>\n              <ion-item>\n                <p>Numero de Vuelo:</p>\n                <h4>9949</h4>\n              </ion-item>\n          </ion-col>\n          <ion-col>\n            <ion-item>\n              <p>Puerta:</p>\n              <h4>9</h4>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <!-- Lugares -->\n        <ion-row text-center>\n          <ion-col>\n              <ion-title>{{vuelo.inicio}} </ion-title>\n          </ion-col>\n          <ion-col>\n          </ion-col>\n          <ion-col>\n             <ion-title>{{vuelo.destino}}</ion-title>\n          </ion-col>\n        </ion-row>\n        <!-- Times / Groups -->\n        <ion-row>\n          <ion-col>\n              <ion-item>\n                  <p> Día:</p>\n                  <h4> {{vuelo.vuelta_fecha | date:\'dd/MMMM/yy\'}}</h4>\n              </ion-item>\n          </ion-col>\n          <ion-col>\n            <ion-item>\n                <p>Hora de Salida:</p>\n                <h4>{{vuelo.ida_inicio_hora}}</h4>\n            </ion-item>\n          </ion-col>\n          <ion-col>\n            <ion-item>\n              <p>Hora de Embarque:</p>\n              <h4>{{vuelo.ida_inicio_hora}}</h4>\n            </ion-item>\n          </ion-col>\n        </ion-row>\n        <ion-row>\n            <ion-col>\n              <ion-item>\n                <h2>Nombre</h2>\n                <ion-item *ngFor="let dato of datos">\n                    <h1>{{dato.nombre}}</h1>\n                </ion-item>7e8\n              </ion-item>\n            </ion-col>\n        </ion-row>\n        <ion-row text-center>\n          <ion-col>\n              <ion-item>\n                  <img src="../../assets/imgs/qr_code.png">\n              </ion-item>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n\n      <!-- Vuelta -->\n      <ion-grid>\n          <!-- Header -->\n          <ion-row>\n            <ion-col col-2>\n                <!-- Update this logo to match airline -->\n                <img src={{vuelo.aerolinea_foto}}>\n            </ion-col>\n            <ion-col>\n                <ion-item>\n                  <p>Numero de Vuelo:</p>\n                  <h4>939</h4>\n                </ion-item>\n            </ion-col>\n            <ion-col>\n              <ion-item>\n                <p>Puerta:</p>\n                <h4>10</h4>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n          <!-- Lugares -->\n          <ion-row text-center>\n            <ion-col>\n                <ion-title>{{vuelo.destino}} </ion-title>\n            </ion-col>\n            <ion-col>\n               <ion-title>{{vuelo.inicio}}</ion-title>\n            </ion-col>\n          </ion-row>\n          <!-- Times / Groups -->\n          <ion-row>\n            <ion-col>\n              <ion-item>\n                  <p> Día:</p>\n                  <h4> {{vuelo.vuelta_fecha | date:\'dd/MMMM/yy\'}}</h4>\n              </ion-item>\n            </ion-col>\n            <ion-col>\n              <ion-item>\n                  <p>Hora de Salida:</p>\n                  <h4>{{vuelo.vuelta_inicio_hora}}</h4>\n              </ion-item>\n            </ion-col>\n            <ion-col>\n              <ion-item>\n                <p>Hora de Embarque:</p>\n                <h4>{{vuelo.vuelta_inicio_hora}}</h4>\n              </ion-item>\n            </ion-col>\n          </ion-row>\n          <ion-row>\n              <ion-col>\n                <ion-item>\n                  <h2>Nombre</h2>\n                  <ion-item *ngFor="let dato of datos">\n                      <h1>{{dato.nombre}}</h1>\n                  </ion-item>\n                </ion-item>\n              </ion-col>\n          </ion-row>\n          <ion-row text-center>\n            <ion-col>\n                <ion-item>\n                    <img src="../../assets/imgs/qr_code.png">\n                </ion-item>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/una-tarjeta/una-tarjeta.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__services_vuelo_service__["a" /* VueloService */]])
-    ], UnaTarjetaPage);
-    return UnaTarjetaPage;
-}());
-
-//# sourceMappingURL=una-tarjeta.js.map
-
-/***/ }),
-
 /***/ 124:
 /***/ (function(module, exports) {
 
@@ -449,15 +447,15 @@ var map = {
 		3
 	],
 	"../pages/reservas/reservas.module": [
-		344,
+		346,
 		2
 	],
 	"../pages/tarjetas/tarjetas.module": [
-		345,
+		344,
 		1
 	],
 	"../pages/una-tarjeta/una-tarjeta.module": [
-		346,
+		345,
 		0
 	]
 };
@@ -501,7 +499,7 @@ var HomePage = /** @class */ (function () {
     }
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="dark">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><ion-icon name="home"></ion-icon> Home</ion-title>\n  </ion-navbar>\n  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">\n</ion-header>\n\n<ion-content padding>\n  <br><h1>Vuelos Europeos S.A.</h1><br>\n</ion-content>\n'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/home/home.html"*/'<ion-header>\n  <!-- <ion-navbar color="dark"> -->\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title><ion-icon name="home"></ion-icon> Home</ion-title>\n  </ion-navbar>\n  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">\n</ion-header>\n\n<ion-content padding>\n  <br><h1>Vuelos Europeos S.A.</h1><br>\n</ion-content>\n'/*ion-inline-end:"/Users/celiaromerogonzalez/Documents/GitHub/microp08/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
     ], HomePage);
@@ -538,12 +536,12 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(223);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(226);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_reservas_reservas__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_reservas_reservas__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_busca_busca__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_mis_vuelos_mis_vuelos__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_checkin_checkin__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_tarjetas_tarjetas__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_una_tarjeta_una_tarjeta__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_tarjetas_tarjetas__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_una_tarjeta_una_tarjeta__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_info_info__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_vuelo_service__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__app_firebase_credentials__ = __webpack_require__(339);
@@ -597,9 +595,9 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/checkin/checkin.module#CheckinPageModule', name: 'CheckinPage', segment: 'checkin', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/info/info.module#InfoPageModule', name: 'InfoPage', segment: 'info', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/mis-vuelos/mis-vuelos.module#MisVuelosPageModule', name: 'MisVuelosPage', segment: 'mis-vuelos', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reservas/reservas.module#ReservasPageModule', name: 'ReservasPage', segment: 'reservas', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/tarjetas/tarjetas.module#TarjetasPageModule', name: 'TarjetasPage', segment: 'tarjetas', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/una-tarjeta/una-tarjeta.module#UnaTarjetaPageModule', name: 'UnaTarjetaPage', segment: 'una-tarjeta', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/una-tarjeta/una-tarjeta.module#UnaTarjetaPageModule', name: 'UnaTarjetaPage', segment: 'una-tarjeta', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/reservas/reservas.module#ReservasPageModule', name: 'ReservasPage', segment: 'reservas', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_16_angularfire2__["a" /* AngularFireModule */].initializeApp(__WEBPACK_IMPORTED_MODULE_15__app_firebase_credentials__["a" /* FIREBASE_CONFIG */]),
@@ -764,9 +762,9 @@ var VueloService = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(223);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(226);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_reservas_reservas__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_reservas_reservas__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_mis_vuelos_mis_vuelos__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_tarjetas_tarjetas__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_tarjetas_tarjetas__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_info_info__ = __webpack_require__(109);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

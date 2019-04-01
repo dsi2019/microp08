@@ -25697,6 +25697,11 @@ page-home h1 {
   text-align: center;
 }
 
+page-home .toolbar-background {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#5a4dfc), to(#60d8fb));
+  background-image: linear-gradient(to bottom right, #5a4dfc, #60d8fb);
+}
+
 page-info h3 {
   padding: 10px auto;
   width: 75%;
