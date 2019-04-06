@@ -25696,18 +25696,3 @@ page-home h1 {
   font-size: 64px;
   text-align: center;
 }
-
-page-info h3 {
-  padding: 10px auto;
-  width: 75%;
-  margin: 0 auto;
-}
-
-page-reservas button {
-  margin: 0 auto;
-}
-
-page-una-tarjeta img {
-  width: 25%;
-  height: auto;
-}
