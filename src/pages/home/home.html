@@ -1,6 +1,5 @@
 <ion-header>
-  <!-- <ion-navbar color="dark"> -->
-  <ion-navbar>
+  <ion-navbar color="light">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -9,6 +8,15 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="start">
   <br><h1>Vuelos Europeos S.A.</h1><br>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+  <ion-row center>
+    <ion-col center>
+      <ion-buttons>
+        <button ion-button (click)="goBusca()" class="reservaya">¡Reserva ya!</button>
+      </ion-buttons>
+    </ion-col>
+  </ion-row>
 </ion-content>
