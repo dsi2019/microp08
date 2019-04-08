@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name="plane"></ion-icon> Mis Vuelos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+      <ion-card ion-item *ngFor="let vuelo of misVuelos$ | async; let i=index">
+        <ion-grid>
+            <!-- IDA -->
+            <ion-row>
+              <ion-item>
+                <ion-title> {{vuelo.inicio}} hasta {{vuelo.destino}}</ion-title>
+              </ion-item>
+            </ion-row>
+            <ion-row>
+              <ion-col col-1>
+                <ion-item>
+                    <img src={{vuelo.aerolinea_foto}}>
+                </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <h2> {{vuelo.aerolinea}}</h2>
+                  <h3> {{vuelo.ida_inicio_hora}} - {{vuelo.ida_destino_hora}}</h3>
+                  <p> {{vuelo.ida_fecha | date:'dd/MM/yy'}}</p>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <!-- Vueltas -->
+            <ion-row>
+              <ion-item>
+                  <ion-title>{{vuelo.destino}} hasta {{vuelo.inicio}}</ion-title>
+              </ion-item>
+            </ion-row>
+            <ion-row>
+              <ion-col col-1>
+                  <ion-item>
+                      <img src={{vuelo.aerolinea_foto}}>
+                  </ion-item>
+              </ion-col>
+              <ion-col>
+                <ion-item>
+                  <h2> {{vuelo.aerolinea}}</h2>
+                  <h3> {{vuelo.vuelta_inicio_hora}} - {{vuelo.vuelta_destino_hora}}</h3>
+                  <p> {{vuelo.vuelta_fecha | date:'dd/MM/yy'}}</p>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col></ion-col>
+              <ion-col>
+                <button ion-item secondary (click)="onStartCheckIn(vuelo, i)">Check-In</button>
+              </ion-col>
+            </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-list>
+</ion-content>

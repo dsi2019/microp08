@@ -25692,7 +25692,71 @@ ion-navbar.toolbar {
   min-height: 46px;
 }
 
+page-busca .toolbar-background {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#5a4dfc), to(#60d8fb));
+  background-image: linear-gradient(to bottom right, #5a4dfc, #60d8fb);
+}
+
+ion-header.toolbar-background {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#5a4dfc), to(#60d8fb));
+  background-image: linear-gradient(to bottom right, #5a4dfc, #60d8fb);
+}
+
+ion-title {
+  color: white;
+}
+
+.card {
+  background-color: #B3C8CE;
+  background: linear-gradient(135deg, #8019C6 0%, #2F93CC 100%);
+}
+
+.toolbar-background {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#5a4dfc), to(#60d8fb));
+  background-image: linear-gradient(to bottom right, #5a4dfc, #60d8fb);
+}
+
 page-home h1 {
-  font-size: 64px;
+  font-size: 60px;
   text-align: center;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+}
+
+.start {
+  background-image: url("../assets/imgs/sky.jpg");
+  background-size: 100% 100%;
+}
+
+.reservaya {
+  background-color: white;
+  color: #4eabb2;
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  float: center;
+  padding: 32px 32px;
+}
+
+.reservaya:hover {
+  background-color: white;
+  color: white;
+}
+
+page-info h3 {
+  padding: 10px auto;
+  width: 75%;
+  margin: 0 auto;
+}
+
+page-reservas button {
+  margin: 0 auto;
+}
+
+.buscar {
+  text-align: center;
+}
+
+page-una-tarjeta img {
+  width: 25%;
+  height: auto;
 }
