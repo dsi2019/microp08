@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name="search"></ion-icon> Busca tu vuelo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="mainScreen">
+    <form (ngSubmit)="onBuscar(f.value)" #f="ngForm">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title> Seleciona tu origen y destino </ion-card-title>
+        </ion-card-header>
+
+        <ion-card>
+          <ion-item>
+            <ion-label floating>Origen</ion-label>
+            <ion-input type="text" name="userOrigen" ngModel required></ion-input>
+          </ion-item>
+        </ion-card>
+        <ion-card>
+          <ion-item>
+            <ion-label floating>Destino</ion-label>
+            <ion-input type="text" name="userDestino" ngModel required></ion-input>
+          </ion-item>
+        </ion-card>
+
+      <ion-card-header>
+        <ion-card-title>Selecciona tus fechas</ion-card-title>
+      </ion-card-header>
+
+      <ion-card>
+          <ion-item>
+            <ion-label floating>Ida  <ion-icon name="ios-calendar-outline"></ion-icon></ion-label>
+            <ion-datetime display-format="MMMM DD" min="2019-03-01" max="2019" name="userFechaIda" ngModel required></ion-datetime>
+          </ion-item>
+      </ion-card>
+      <ion-card>
+        <ion-item>
+          <ion-label floating>Vuelta  <ion-icon name="ios-calendar-outline"></ion-icon></ion-label>
+          <ion-datetime display-format="MMMM DD" min="2019-03-01" max="2019" name="userFechaVuelta" ngModel required></ion-datetime>
+        </ion-item>
+      </ion-card>
+      <br>
+      <button ion-button secondary [disabled]="!f.valid">Buscar</button>
+    </ion-card>
+  </form>
+</ion-content>

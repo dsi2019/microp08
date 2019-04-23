@@ -1,6 +1,30 @@
 page-home {
     h1 {
-        font-size: 64px;
+        font-size: 60px;
         text-align: center;
+        font-family: 'Raleway', sans-serif;
+        color: white;
     }
+}
+
+// .toolbar-background {
+//     // background-image: linear-gradient(to bottom right, #5a4dfc, #60d8fb);
+// }
+
+.start {
+    background-image: url('../assets/imgs/sky.jpg');
+    background-size: 100% 100%;
+}
+
+.reservaya {
+    background-color: white;
+    color: #4eabb2;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    float: center;
+    padding: 32px 32px;
+}
+.reservaya:hover {
+    background-color: white;
+    color: white;
 }
